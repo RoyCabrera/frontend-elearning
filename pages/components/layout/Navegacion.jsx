@@ -1,6 +1,10 @@
 import Link from 'next/link';
+import {useContext} from 'react';
+import AuthContext from '../../context/authentication/authContext';
 
 const Navegacion = () => {
+  const authContext = useContext(AuthContext);
+  const { usuarioAutenticado, usuario } = authContext;
   return (
     <>
       <ul className="navbar-nav mr-auto">
@@ -14,11 +18,14 @@ const Navegacion = () => {
             <a className="nav-link">Categorias</a>
           </Link>
         </li>
-        <li className="nav-item">
+        {
+          usuario ?(<li className="nav-item">
           <Link href="/cursos">
             <a className="nav-link">Mis cursos</a>
           </Link>
-        </li>
+        </li>) : null
+        }
+
       </ul>
     </>
   );

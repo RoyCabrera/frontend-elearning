@@ -1,21 +1,15 @@
+
 import Layout from './components/layout/Layout';
 import Link from 'next/link';
+import Router from 'next/router';
 import useValidacion from './hooks/useValidacion';
 import validarCrearCuenta from '../validacion/validarCrearCuenta';
-import clienteAxios from './config/axios';
-import {useContext,useReducer} from 'react';
-import AuthContext from './context/authentication/authContext';
-import AuthReducer from './context/authentication/authReducer';
+import auth from './context/authentication/auth';
+import Cookie from 'universal-cookie';
+import { useContext, useEffect } from 'react';
+import { AuthContext } from './context/authentication';
 
 
-import {
-  REGISTRO_EXITOSO,
-  REGISTRO_ERROR,
-  OBTENER_USUARIO,
-  LOGIN_EXITOSO,
-  LOGIN_ERROR,
-  CERRAR_SESION,
-} from "./types/index";
 
 const STATE_INICIAL = {
 
@@ -27,29 +21,31 @@ const STATE_INICIAL = {
 }
 
 
-const CrearCuenta = () => {
+const CrearCuenta = (props) => {
 
   const {valores,errores,handleSubmit,handleChange,handleBlur} = useValidacion(STATE_INICIAL,validarCrearCuenta,creacionCuenta)
 
-  /* const {autenticado,mensaje,token,usuario} = useContext(AuthContext); */
-  const [state,dispatch] =  useReducer(AuthReducer)
+  const authContext = useContext(AuthContext);
+
+  const {mensaje,autenticado,registrar}=authContext;
+
+  useEffect(()=> {
+    if(autenticado){
+      Router.push('/')
+    }
+
+    if(mensaje){
+      // mostrar error
+      console.log(mensaje.message);
+
+    }
+  },[mensaje,autenticado,props.history]);
 
   async function creacionCuenta(){
 
 
-    try {
-      const response = await clienteAxios.post('/api/users',valores);
+    await registrar(valores);
 
-      console.log(response.data);
-
-      dispatch({
-        type: REGISTRO_EXITOSO,
-        payload: response.data
-      })
-
-    } catch (error) {
-
-    }
 
   }
 
@@ -58,6 +54,7 @@ const CrearCuenta = () => {
   return (
     <div>
       <Layout>
+
         <div className="mt-3 card bg-light">
           <article className="card-body mx-auto">
             <h4 className="card-  title mt-3 text-center">Regístrate Gratis</h4>
@@ -159,6 +156,12 @@ const CrearCuenta = () => {
                   <a title="Inicia sesión">Iniciar sesión</a>
                 </Link>
               </p>
+
+              {mensaje ?  (<div className="alert alert-danger">
+                {mensaje.message}
+              </div>): null}
+
+
             </form>
           </article>
         </div>

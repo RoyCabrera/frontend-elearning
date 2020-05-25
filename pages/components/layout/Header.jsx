@@ -1,11 +1,24 @@
-import Link from 'next/link';
-import {Global,css} from '@emotion/core';
-import Navegacion from './Navegacion';
-import Buscar from '../ui/Buscar';
+import { useContext, useEffect } from "react";
+import Link from "next/link";
+import { Global, css } from "@emotion/core";
+import Navegacion from "./Navegacion";
+import Buscar from "../ui/Buscar";
+import AuthContext from "../../context/authentication/authContext";
+import Login from "../ui/login";
+//import authentication,{AuthContext} from '../../context/authentication';
 
 const Header = () => {
+  const authContext = useContext(AuthContext);
+  const { usuarioAutenticado, usuario, cerrarSesion } = authContext;
+  /* ; */
 
-  const usuario = false;
+  useEffect(() => {
+
+      usuarioAutenticado();
+
+
+  }, []);
+
   return (
     <>
       <Global
@@ -37,36 +50,44 @@ const Header = () => {
           }
 
           .divider-text {
-    position: relative;
-    text-align: center;
-    margin-top: 15px;
-    margin-bottom: 15px;
-}
-.divider-text span {
-    padding: 7px;
-    font-size: 12px;
-    position: relative;
-    z-index: 2;
-}
-.divider-text:after {
-    content: "";
-    position: absolute;
-    width: 100%;
-    border-bottom: 1px solid #ddd;
-    top: 55%;
-    left: 0;
-    z-index: 1;
-}
+            position: relative;
+            text-align: center;
+            margin-top: 15px;
+            margin-bottom: 15px;
+          }
+          .divider-text span {
+            padding: 7px;
+            font-size: 12px;
+            position: relative;
+            z-index: 2;
+          }
+          .divider-text:after {
+            content: "";
+            position: absolute;
+            width: 100%;
+            border-bottom: 1px solid #ddd;
+            top: 55%;
+            left: 0;
+            z-index: 1;
+          }
 
+          article {
+            max-width: 400px;
+          }
 
-
-article {
-  max-width: 400px;
-}
-
-.input-select-phone{
-  max-width: 90px;
-}
+          .input-select-phone {
+            max-width: 90px;
+          }
+          .estilos-login {
+            padding: 15px;
+            padding-bottom: 10px;
+          }
+          .login {
+            margin-bottom: 5px;
+          }
+          .dropdown-menu {
+            width: 300px !important;
+          }
         `}
       />
       <nav className=" text-center navbar navbar-expand-lg navbar-light bg-light">
@@ -93,37 +114,45 @@ article {
 
             {usuario ? (
               <>
-              <ul className="navbar-nav mr-auto">
-              <li class="nav-item dropdown">
-                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Roy Cabrera Ayala
-                  </a>
-                  <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <ul className="navbar-nav mr-auto">
+                  <li className="nav-item dropdown">
+                    <a
+                      className="nav-link dropdown-toggle"
+                      href="#"
+                      id="navbarDropdown"
+                      role="button"
+                      data-toggle="dropdown"
+                      aria-haspopup="true"
+                      aria-expanded="false"
+                    >
+                      {usuario.name} {usuario.last_name}
+                    </a>
+                    <div
+                      className="dropdown-menu"
+                      aria-labelledby="navbarDropdown"
+                    >
+                      <Link href="/ajustes">
+                        <a className="dropdown-item">Ajustes</a>
+                      </Link>
 
-                    <Link href="/ajustes">
-                      <a class="dropdown-item" >Ajustes</a>
-                    </Link>
-                    <Link href="/salir">
-                      <a class="dropdown-item text-danger">Cerrar sesión</a>
-                    </Link>
+                        <button
+                          className="dropdown-item text-danger"
+                          onClick={() => cerrarSesion()}
+                        >
+                          Cerrar sesión
+                        </button>
 
-                  </div>
-                </li>
+                    </div>
+                  </li>
                 </ul>
               </>
             ) : (
               <>
-                <div className="nav-item m-2">
-                  <Link href="/login">
-                    <a className="btn btn-light">Ingresar</a>
-                  </Link>
-
-                </div>
+                <Login />
                 <div className="nav-item m-2">
                   <Link href="/crear-cuenta">
                     <a className="btn btn-primary">Crear cuenta</a>
                   </Link>
-
                 </div>
               </>
             )}
@@ -132,6 +161,6 @@ article {
       </nav>
     </>
   );
-}
+};
 
 export default Header;
