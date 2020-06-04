@@ -65,23 +65,33 @@ const Auth = props => {
 
 
     const token = cookie.get('token');
-        if(token) {
-            tokenAuth(token);
-            const respuesta = await clienteAxios.get('/api/auth');
-            console.log("xxxxxxxxxxxxxxxxxx");
+    try {
+      if(token) {
+        tokenAuth(token);
+        const respuesta = await clienteAxios.get('/api/auth');
+       /*
 
-            console.log(respuesta.data);
-            dispatch({
-                type: OBTENER_USUARIO,
-                payload: respuesta.data
-            });
-        }else{
+        console.log(respuesta.data); */
+        dispatch({
+            type: OBTENER_USUARIO,
+            payload: respuesta.data
+        });
+    }else{
 
+      dispatch({
+        type: LOGIN_ERROR
+    })
+    }
 
-          dispatch({
-            type: LOGIN_ERROR
-        })
-        }
+    } catch (error) {
+      dispatch({
+        type: LOGIN_ERROR
+    })
+
+      alert("sesión caducada")
+      Router.push('/');
+
+    }
 
 
   }

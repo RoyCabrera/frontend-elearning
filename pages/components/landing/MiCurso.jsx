@@ -1,6 +1,14 @@
 import Link from 'next/link';
 const MiCurso = ({curso}) => {
-  const { course } = curso;
+  const { course} = curso;
+
+  if(course.lessons.length > 0){
+    let lesson1 = course.lessons[0].id;
+  }else{
+    let lesson1="";
+  }
+
+
 
   return (
     <div className="col-lg-4 col-md-4 col-sm-12 col-xs-12 p-1" >
@@ -12,7 +20,8 @@ const MiCurso = ({curso}) => {
 
           <span className="tag mb-4 d-inline-block">{course.category.name} </span>
           <h4 className="mb-3">
-            <Link href="/cursos/[id]" as={`/cursos/`} >
+
+            <Link href="/mi_curso/[lesson]/[id] " as={`/mi_curso/0/${course.id}`} >
             <a >{course.name} </a>
             </Link>
 

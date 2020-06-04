@@ -7,6 +7,7 @@ import clienteAxios from '../config/axios';
 import Error404 from '../components/layout/Error404';
 import Goals from '../components/ui/Goals';
 import AuthContext from '../context/authentication/authContext';
+import LessonsBloqueado from '../components/landing/LessonsBloqueado';
 const Curso = () => {
 
   const router = useRouter();
@@ -45,21 +46,6 @@ const Curso = () => {
     }
   },[id,usuario]);
 
-  /* const coursesEnrolled = async () => {
-      // validar si ya esta inscrito en el curso
-
-        if(usuario){
-          const course_student = {
-            courseId:id,
-            userId:usuario.id
-          }
-          console.log(course_student);
-
-          const response = await clienteAxios.post('/api/courses_enrolled',course_student);
-          console.log(response.data);
-
-        }
-  } */
 
   const enrollCourse = async () => {
 
@@ -88,7 +74,7 @@ const Curso = () => {
 if(error) return <Error404/>
 
 if(Object.keys(curso).length === 0 && !error)  return <Layout><div className ="section_gap text-center">Cargando...</div></Layout>;
-const {name,description,teacher,level,category} = curso;
+const {name,description,teacher,level,category,lessons} = curso;
 /* console.log(curso); */
 
   return (
@@ -143,42 +129,11 @@ const {name,description,teacher,level,category} = curso;
                         <h4 className="title">Contenido del curso</h4>
                         <div className="content">
                             <ul className="course_list">
-                                <li className="justify-content-between d-flex">
-                                    <p>Introduction Lesson</p>
-                                    <a className="primary-btn text-uppercase" href="#">View Details</a>
-                                </li>
-                                <li className="justify-content-between d-flex">
-                                    <p>Basics of HTML</p>
-                                    <a className="primary-btn text-uppercase" href="#">View Details</a>
-                                </li>
-                                <li className="justify-content-between d-flex">
-                                    <p>Getting Know about HTML</p>
-                                    <a className="primary-btn text-uppercase" href="#">View Details</a>
-                                </li>
-                                <li className="justify-content-between d-flex">
-                                    <p>Tags and Attributes</p>
-                                    <a className="primary-btn text-uppercase" href="#">View Details</a>
-                                </li>
-                                <li className="justify-content-between d-flex">
-                                    <p>Basics of CSS</p>
-                                    <a className="primary-btn text-uppercase" href="#">View Details</a>
-                                </li>
-                                <li className="justify-content-between d-flex">
-                                    <p>Getting Familiar with CSS</p>
-                                    <a className="primary-btn text-uppercase" href="#">View Details</a>
-                                </li>
-                                <li className="justify-content-between d-flex">
-                                    <p>Introduction to Bootstrap</p>
-                                    <a className="primary-btn text-uppercase" href="#">View Details</a>
-                                </li>
-                                <li className="justify-content-between d-flex">
-                                    <p>Responsive Design</p>
-                                    <a className="primary-btn text-uppercase" href="#">View Details</a>
-                                </li>
-                                <li className="justify-content-between d-flex">
-                                    <p>Canvas in HTML 5</p>
-                                    <a className="primary-btn text-uppercase" href="#">View Details</a>
-                                </li>
+                            {
+                                lessons.map((lesson,indice)=>(
+                                  <LessonsBloqueado key={lesson.id} lesson={lesson} curso={id} indice={indice} />
+                                ))
+                              }
 
                             </ul>
                         </div>

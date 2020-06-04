@@ -51,7 +51,7 @@ const Header = () => {
         `}
       />
 
-      <header className="header_area">
+      <header className="header_area fixed-top">
         <div className="main_menu">
           <nav className="navbar navbar-expand-lg navbar-light">
             <div className="container">
@@ -86,28 +86,6 @@ const Header = () => {
                     </Link>
                   </li>
 
-                  <li className="nav-item submenu dropdown">
-                    <a
-                      href="#"
-                      className="nav-link dropdown-toggle"
-                      data-toggle="dropdown"
-                      role="button"
-                      aria-haspopup="true"
-                      aria-expanded="false"
-                    >
-                      Especialidades
-                    </a>
-
-                    <ul className="dropdown-menu">
-                      {categorias.map((categoria) => (
-                        <ListaCategorias
-                          key={categoria.id}
-                          categoria={categoria}
-                        />
-                      ))}
-                    </ul>
-                  </li>
-
                   {usuario ? (
                     <>
                       <li className="nav-item">
@@ -115,20 +93,29 @@ const Header = () => {
                           <a className="nav-link">Mis cursos</a>
                         </Link>
                       </li>
-                      {
-                        usuario.roleId === 2 ? (
-<>
+                      {usuario.roleId === 2 ? (
+                        <>
                           <li className="nav-item">
-                          <Link href="/crear_curso">
-                            <a className="nav-link">crear curso</a>
-                          </Link>
-                        </li>
-                        <li className="nav-item">
-                        <Link href="/mis_cursos_impartidos">
-                          <a className="nav-link">Mis cursos impartidos</a>
-                        </Link>
-                      </li></>) : null
-                      }
+                            <Link href="/crear_curso">
+                              <a className="nav-link">crear curso</a>
+                            </Link>
+                          </li>
+                          <li className="nav-item">
+                            <Link href="/mis_cursos_impartidos">
+                              <a className="nav-link">Mis cursos impartidos</a>
+                            </Link>
+                          </li>
+                        </>
+                      ) : null}
+                      {usuario.roleId === 1 ? (
+                        <>
+                          <li className="nav-item">
+                            <Link href="/gestion_cursos">
+                              <a className="nav-link">Gestionar cursos</a>
+                            </Link>
+                          </li>
+                        </>
+                      ) : null}
 
                       <li className="nav-item submenu dropdown">
                         <a
@@ -144,11 +131,8 @@ const Header = () => {
                         <ul className="dropdown-menu">
                           <li className="nav-item">
                             <Link href="/ajustes-usuario">
-                              <a className="nav-link" >
-                                Ajustes
-                              </a>
+                              <a className="nav-link">Ajustes</a>
                             </Link>
-
                           </li>
 
                           <li className="nav-item">
