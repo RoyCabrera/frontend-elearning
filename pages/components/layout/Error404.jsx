@@ -1,8 +1,16 @@
+import Layout from "./Layout";
+
 const Error404 = () => {
   return (
-    <div>
-      <h1>No se puede mostrar</h1>
+    <Layout>
+      <>
+      <div className="section_gap text-center">
+      <h1>Página no encontrada :(</h1>
     </div>
+
+      </>
+    </Layout>
+
    );
 }
 

@@ -7,44 +7,7 @@ import tokenAuth from '../../config/token';
 import  Router  from 'next/router';
 const cookie = new Cookie();
 
-/* class UsuarioRegister {
 
-  constructor(){
-
-    this.token=cookie.get("token");
-    this.autenticado = null;
-    this.usuario=null;
-    this.mensaje=null;
-  }
-
-  registrar = async (valores) => {
-    try {
-      const response = await clienteAxios.post('/api/users',valores);
-
-
-      this.token= response.data.token;
-      this.autenticado=true;
-      this.mensaje="Registro exitoso";
-      this.usuario={
-        usuario:response.data.data,
-        token:this.token
-      }
-      return this.usuario;
-
-    } catch (error) {
-
-      console.log("Hubo un error al crear usuario:",error.response.data.message);
-      this.mensaje=error.response.data.message;
-      this.autenticado=false;
-
-    }
-
-  }
-}
-
-const auth = new UsuarioRegister();
-
-export default auth; */
 
 import { 
   REGISTRO_EXITOSO,
@@ -120,16 +83,7 @@ const Auth = props => {
         })
         }
 
-        /* try {
 
-
-
-        } catch (error) {
-            console.log(error.response);
-            dispatch({
-                type: LOGIN_ERROR
-            })
-        } */
   }
 
   const cerrarSesion = () => {

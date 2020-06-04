@@ -1,31 +1,75 @@
-import Head from 'next/head';
-import Header from './Header';
+import Head from "next/head";
+import Header from "./Header";
+
 
 const Layout = (props) => {
   return (
-
     <>
-
       <Head>
-
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous"></link>
-        {/* <link rel="stylesheet" href="/static/css/normalize.css"/> */}
-        <link href="https://fonts.googleapis.com/css?family=PT+Sans:400,700|Roboto+Slab:400,700&display=swap" rel="stylesheet" />
 
-        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
-        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css"></link>
+        <link rel="stylesheet" href="/css/bootstrap.css" />
+        <link rel="stylesheet" href="/css/flaticon.css" />
+        <link rel="stylesheet" href="/css/themify-icons.css" />
+
+
+
+<link rel="stylesheet" href="/css/style.css" />
+
         <title>Plataforma de fornación online</title>
       </Head>
-      <Header/>
+      <Header />
 
-      <main className="container">{props.children}</main>
+      <main>{props.children}</main>
+      <footer className="footer-area section_gap">
+        <div className="container">
+          <div className="row">
+            <div className="col-lg-2 col-md-6 single-footer-widget">
+              <h4>Nuestras especialidades</h4>
+              <ul>
+                <li>
+                  <p>Javascript</p>
+                </li>
+                <li>
+                  <p>Node JS</p>
+                </li>
+                <li>
+                  <p>Base de datos</p>
+                </li>
+                <li>
+                  <p>Administración de servidores</p>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div className="row footer-bottom d-flex justify-content-between">
+            <p className="col-lg-8 col-sm-12 footer-text m-0 text-white">
+              Copyright &copy; All rights reserved | Roy Andy Cabrera Ayala
+            </p>
+            <div className="col-lg-4 col-sm-12 footer-social">
+              <a href="#">
+                <i className="ti-facebook"></i>
+              </a>
+              <a href="#">
+                <i className="ti-twitter"></i>
+              </a>
 
+              <a href="#">
+                <i className="ti-linkedin"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+      </footer>
+      <script src="/js/jquery-3.2.1.min.js"></script>
+      <script src="/js/popper.js"></script>
+      <script src="/js/bootstrap.min.js"></script>
+
+
+
+      <script src="/js/theme.js"></script>
     </>
-
   );
-}
+};
 
 export default Layout;

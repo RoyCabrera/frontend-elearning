@@ -1,25 +1,44 @@
-const Cursos = ({ curso }) => {
-  console.log(curso);
+import Link from 'next/link';
 
-  const {name,description,teacher} = curso;
+const Cursos = ({ curso }) => {
+
+
+  const { id,name, description, teacher, category ,statusId} = curso;
 
   return (
-    <div className="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-      <div className="card-deck">
-        <div className="card">
-          <img src="https://upload.wikimedia.org/wikipedia/commons/6/6a/JavaScript-logo.png" className="card-img-top" alt="..." />
-          <div className="card-body">
-            <h5 className="card-title">{name} </h5>
-            <p className="card-text">
-              {description}
-            </p>
+    statusId === 1 ? (<div className="col-lg-4 col-md-4 col-sm-12 col-xs-12 p-1" >
+    <div className="single_course">
+      <div className="course_head">
+        <img className="img-fluid" src="img/courses/c1.jpg" alt="" />
+      </div>
+      <div className="course_content">
+        <span className="price">Gratis</span>
+        <span className="tag mb-4 d-inline-block">{category.name} </span>
+        <h4 className="mb-3">
+          <Link href="/cursos/[id]" as={`/cursos/${id}`} >
+          <a >{name} </a>
+          </Link>
+
+        </h4>
+        <p>{description}</p>
+        <div className="course_meta d-flex justify-content-lg-between align-items-lg-center flex-lg-row flex-column mt-4">
+          <div className="authr_meta">
+            <small className="d-inline-block ml-2">
+              {
+                teacher ? (<div>
+                  {teacher.user.name} {teacher.user.last_name}
+                </div>) : null
+              }
+
+            </small>
           </div>
-          <div className="card-footer">
-            <small className="text-muted">{teacher.user.name} {teacher.user.last_name} </small>
-          </div>
+
         </div>
       </div>
     </div>
+
+  </div>) : null
+
   );
 };
 

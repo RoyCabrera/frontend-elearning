@@ -1,43 +1,45 @@
-import {useContext,useEffect} from 'react';
-import Router from 'next/router';
-import validarIniciarSesion from '../../../validacion/validarIniciarSesion';
-import useValidacion from '../../hooks/useValidacion';
-import AuthContext from '../../context/authentication/authContext';
+import { useContext, useEffect, useState } from "react";
+import Router from "next/router";
+import validarIniciarSesion from "../../../validacion/validarIniciarSesion";
+import useValidacion from "../../hooks/useValidacion";
+import AuthContext from "../../context/authentication/authContext";
 
 const STATE_INICIAL = {
-  email: '',
-  password: ''
-}
+  email: "",
+  password: "",
+};
 
 const Login = () => {
-
-  const { valores, errores, handleSubmit, handleChange, handleBlur } = useValidacion(STATE_INICIAL, validarIniciarSesion, login);
+  const {
+    valores,
+    errores,
+    handleSubmit,
+    handleChange,
+    handleBlur,
+  } = useValidacion(STATE_INICIAL, validarIniciarSesion, login);
 
   const authContext = useContext(AuthContext);
-  const {mensaje,autenticado,iniciarSesion}=authContext;
+  const { mensaje, autenticado, iniciarSesion } = authContext;
 
-  useEffect(()=> {
-    if(autenticado){
-      Router.push('/')
+  useEffect(() => {
+    if (autenticado) {
+      Router.push("/");
     }
 
-    if(mensaje){
+    if (mensaje) {
       // mostrar error
       console.log(mensaje.message);
-
     }
-  },[mensaje,autenticado]);
+  }, [mensaje, autenticado]);
   const { email, password } = valores;
 
   async function login() {
     await iniciarSesion(valores);
-
   }
-
 
   return (
     <>
-      <div className="nav-item m-2">
+      <div className="nav-item">
         <ul className="navbar-nav mr-auto">
           <li className="nav-item dropdown">
             <a
@@ -50,22 +52,21 @@ const Login = () => {
             >
               Ingresar
             </a>
-            <div className="dropdown-menu estilos-login">
+            <div className="dropdown-menu ">
               <form
-                className="form-horizontal"
+                className="form-horizontal register_form"
                 onSubmit={handleSubmit}
-              noValidate
-
+                noValidate
               >
                 <input
-                className="form-control login"
-                 type="email"
-                 id="email_login"
-                 placeholder="Correo Electrónico"
-                 name="email"
-                 value={email}
-                 onChange={handleChange}
-                 onBlur={handleBlur}
+                  className="form-control login"
+                  type="email"
+                  id="email_login"
+                  placeholder="Correo Electrónico"
+                  name="email"
+                  value={email}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
                 />
                 <br />
                 <input
@@ -74,13 +75,12 @@ const Login = () => {
                   name="password"
                   placeholder="Contraseña"
                   value={password}
-
-                      onChange={handleChange}
-                      onBlur={handleBlur}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
                 />
                 <br />
                 <input
-                  className="btn btn-primary btn-block"
+                  className="btn-warning "
                   type="submit"
                   name="submit"
                   value="Iniciar sesión"
@@ -92,6 +92,6 @@ const Login = () => {
       </div>
     </>
   );
-}
+};
 
 export default Login;
