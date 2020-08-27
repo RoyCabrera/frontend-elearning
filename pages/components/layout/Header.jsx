@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import Link from "next/link";
 import { Global, css } from "@emotion/core";
-
+import Router  from "next/router";
 import AuthContext from "../../context/authentication/authContext";
 import Login from "../ui/login";
 import clienteAxios from "../../config/axios";
@@ -48,6 +48,22 @@ const Header = () => {
           .dropdown-menu {
             width: 300px !important;
           }
+          .editor {
+            border: 1px solid;
+
+          }
+          .output-code{
+            border: 1px #b5b5b5 solid;
+            background: #f5f5f5;
+            width:1000px;
+            height:150px;
+          }
+          .ide{
+            height:600px;
+          }
+          .code{
+            border: 1px solid
+          }
         `}
       />
 
@@ -86,11 +102,49 @@ const Header = () => {
                     </Link>
                   </li>
 
+
+
+
+
+
+
                   {usuario ? (
                     <>
+                    <li className="nav-item submenu dropdown">
+                        <a
+                          href="#"
+                          className="nav-link dropdown-toggle"
+                          data-toggle="dropdown"
+                          role="button"
+                          aria-haspopup="true"
+                          aria-expanded="false"
+                        >
+                          Code
+                        </a>
+                        <ul className="dropdown-menu">
+                          <li className="nav-item">
+                          <li className="nav-item">
+                    <Link href="/editor">
+                      <a className="nav-link">Mi Editor</a>
+                    </Link>
+                  </li>
+                          </li>
+
+                          <li className="nav-item">
+
+                      <a className="nav-link" href="/ide">IDE</a>
+
+                  </li>
+                        </ul>
+                      </li>
                       <li className="nav-item">
                         <Link href="/Mis_cursos">
                           <a className="nav-link">Mis cursos</a>
+                        </Link>
+                      </li>
+                      <li className="nav-item">
+                        <Link href="/publicaciones">
+                          <a className="nav-link">Publicaciones</a>
                         </Link>
                       </li>
                       {usuario.roleId === 2 ? (
@@ -102,7 +156,7 @@ const Header = () => {
                           </li>
                           <li className="nav-item">
                             <Link href="/mis_cursos_impartidos">
-                              <a className="nav-link">Mis cursos impartidos</a>
+                              <a className="nav-link">Impartidos</a>
                             </Link>
                           </li>
                         </>

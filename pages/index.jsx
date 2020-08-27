@@ -5,6 +5,7 @@ import Cursos from './components/landing/Cursos';
 import Categorias from './components/landing/Categorias';
 import AuthContext from './context/authentication/authContext';
 import Link from 'next/link';
+import AceEditor from 'react-ace';
 
 const Home = () => {
 
@@ -14,6 +15,14 @@ const Home = () => {
   const { usuarioAutenticado, usuario } = authContext;
 
   useEffect(()=>{
+    const SEC_HTTPS = true;
+    const SEC_BASE = "compilers.widgets.sphere-engine.com";
+    (function(d, s, id){ SEC = window.SEC || (window.SEC = []);
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return; js = d.createElement(s); js.id = id;
+      js.src = (SEC_HTTPS ? "https" : "http") + "://" + SEC_BASE + "/static/sdk/sdk.js";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, "script", "sphere-engine-compilers-jssdk"));
     const obtenerCursos = async () => {
 
       const response = await clienteAxios.get('/api/courses');
@@ -37,6 +46,10 @@ const Home = () => {
     });
     setCursos(cursosObtenidos);
 
+  }
+
+  function onChange(newValue) {
+    console.log("change", newValue);
   }
 
   const guardarCategorias = (categorias) => {
@@ -96,6 +109,7 @@ const Home = () => {
               <div className="col-lg-5">
                 <div className="main_title">
                   <h1 className="mb-3">Especialidades</h1>
+
                   <p>
                     Rutas de aprendizaje preparadas en detalle por nuestros expertos
                   </p>
@@ -130,7 +144,9 @@ const Home = () => {
                 <Cursos key={curso.id} curso={curso} />
               ))}
             </div>
+
           </div>
+
         </div>
 
       </div>

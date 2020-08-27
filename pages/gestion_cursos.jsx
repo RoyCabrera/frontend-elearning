@@ -21,9 +21,6 @@ const GestionCursos = () => {
   }, [usuario]);
 
 
-
-
-
   return (
 
 

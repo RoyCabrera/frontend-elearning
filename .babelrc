@@ -1,4 +1,18 @@
 {
+  "env": {
+    "test": {
+      "presets": [
+        /* ["@babel/preset-env"], */
+        "next/babel"
+      ]
+    },
+    "development": {
+      "presets": [
+        "next/babel"
+      ]
+    }
+  },
+
   "presets": [
       "next/babel",
       "@emotion/babel-preset-css-prop"
@@ -7,3 +21,4 @@
       "emotion"
   ]
 }
+

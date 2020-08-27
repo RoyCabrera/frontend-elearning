@@ -11,7 +11,7 @@ const Layout = (props) => {
         <link rel="stylesheet" href="/css/bootstrap.css" />
         <link rel="stylesheet" href="/css/flaticon.css" />
         <link rel="stylesheet" href="/css/themify-icons.css" />
-
+        <script src="/js/widget.js"></script>
 
 
 <link rel="stylesheet" href="/css/style.css" />
@@ -61,13 +61,16 @@ const Layout = (props) => {
           </div>
         </div>
       </footer>
+
       <script src="/js/jquery-3.2.1.min.js"></script>
       <script src="/js/popper.js"></script>
       <script src="/js/bootstrap.min.js"></script>
-
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.11/ace.js"></script>
 
 
       <script src="/js/theme.js"></script>
+
+
     </>
   );
 };

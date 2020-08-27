@@ -14,7 +14,9 @@ const MiCurso = ({curso}) => {
     <div className="col-lg-4 col-md-4 col-sm-12 col-xs-12 p-1" >
       <div className="single_course">
         <div className="course_head">
-          <img className="img-fluid" src="img/courses/c1.jpg" alt="" />
+        <img style={{width:'100%',
+    height: "15vw",
+    }} src={`http://localhost:4546/${course.picture}`}  />
         </div>
         <div className="course_content">
 
@@ -36,10 +38,10 @@ const MiCurso = ({curso}) => {
             <div className="mt-lg-0 mt-3">
 
 
-                <button className="btn genric-btn danger-border btn-block">
+               {/*  <button className="btn genric-btn danger-border btn-block">
                   Eliminar de mis cursos
                 </button>
-
+ */}
             </div>
           </div>
         </div>

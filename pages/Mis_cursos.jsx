@@ -44,7 +44,7 @@ const Cursos = () => {
             <div className="row justify-content-center">
               <div className="col-lg-5">
                 <div className="main_title">
-                  <h1 className="mb-3">Mis cursos</h1>
+                  <h1 className="mb-3">Mis cursos Matriculados</h1>
 
                 </div>
               </div>
