@@ -110,7 +110,7 @@ const Header = () => {
 
                   {usuario ? (
                     <>
-                    <li className="nav-item submenu dropdown">
+                    {/* <li className="nav-item submenu dropdown">
                         <a
                           href="#"
                           className="nav-link dropdown-toggle"
@@ -136,6 +136,11 @@ const Header = () => {
 
                   </li>
                         </ul>
+                      </li> */}
+                      <li className="nav-item">
+                        <Link href="/editor">
+                          <a className="nav-link">Editor</a>
+                        </Link>
                       </li>
                       <li className="nav-item">
                         <Link href="/Mis_cursos">
